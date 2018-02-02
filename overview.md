@@ -2,9 +2,10 @@
 
 ## Overview
 
- This article provides guidance and automation scripts to deliver a Microsoft Azure data warehouse architecture appropriate for handling many workloads_____.
+ This article provides guidance and automation scripts to deliver a Microsoft Azure data warehouse architecture that implements a subset of controls from the FedRAMP High baseline, based on NIST SP 800-53. This solution automates deployment and configuration of Azure resources for a common reference architecture, demonstrating ways in which customers can meet specific security and compliance requirements and serves as a foundation for customers to build and configure their own solutions on Azure. The solution 
 
 ## Architecture Diagram and Components
+
 
 ### Deployment Architecture:
 
@@ -21,6 +22,8 @@
 ### Identity
 
 ### Security
+
+## Compliance Documentation
 
 ## Deploy the Solution
 
