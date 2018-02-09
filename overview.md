@@ -2,7 +2,7 @@
 
 ## Overview
 
-The [Federal Risk and Authorization Management Program (FedRAMP)](https://www.fedramp.gov/), is a U.S. government-wide program that provides a standardized approach to security assessment, authorization, and continuous monitoring for cloud products and services. This Azure Blueprint Automation – Data Warehouse for FedRAMP provides guidance and automation scripts to deliver a Microsoft Azure data warehouse architecture that implements the FedRAMP High or Moderate set of controls depending on your compliance needs. This solution automates deployment and configuration of Azure resources for a common reference architecture, demonstrating ways in which customers can meet specific security and compliance requirements and serves as a foundation for customers to build and configure their own data warehouse solutions in Azure.
+The [Federal Risk and Authorization Management Program (FedRAMP)](https://www.fedramp.gov/), is a U.S. government-wide program that provides a standardized approach to security assessment, authorization, and continuous monitoring for cloud products and services. This Azure Blueprint Automation – Data Warehouse for FedRAMP provides guidance and automation scripts to deliver a Microsoft Azure data warehouse architecture that implements the FedRAMP High set of controls. This solution automates deployment and configuration of Azure resources for a common reference architecture, demonstrating ways in which customers can meet specific security and compliance requirements and serves as a foundation for customers to build and configure their own data warehouse solutions in Azure. **Note: This solution deploys to Azure Government.**
 
 This architecture is intended to serve as a foundation for customers to adjust to their specific requirements and should not be used as-is in a production environment. Deploying an application into this environment without modification is not sufficient to completely meet the requirements of the FedRAMP High baseline. Please note the following:
 - This architecture provides a baseline to help customers use Azure in a FedRAMP-compliant manner.
@@ -14,7 +14,7 @@ This solution deploys a data warehouse reference architecture enabling you to qu
 
 A SQL load balancer is deployed to load balance and manage SQL traffic, ensuring high performance. Furthermore, all virtual machines in this reference architecture are deployed in an availability set, and SQL Server instances are configured in an AlwaysOn availability group for high-availability and disaster-recovery capabilities.
 
-This data warehouse reference architecture also deploys an Active Directory tier for identity management. All virtual machines are domain-joined, and Active Directory group policies are used to enforce security and compliance configurations at the operating system level.
+This data warehouse reference architecture also deploys Azure Active Directory (AAD). AAD is used to manage the deployment and provision access to personnel interacting with the environment. Azure Services such as Key Vault also interact with AAD. All virtual machines are domain-joined, and Active Directory group policies are used to enforce security and compliance configurations at the operating system level.
 
 A virtual machine is deployed as a management jumpbox (bastion host) to provide a secure connection for administrators to access deployed resources. The data is loaded into the staging area through this management jumpbox. It is recommended that you configure a VPN or Azure ExpressRoute connection for management and data import into the reference architecture subnet.
 
@@ -51,6 +51,8 @@ Operations Management Suite (OMS)
 The following section details the development and implementation elements.
 
 **SQL Data Warehouse**: [SQL Data Warehouse](https://docs.microsoft.com/en-us/azure/sql-data-warehouse/sql-data-warehouse-overview-what-is) is an Enterprise Data Warehouse (EDW) that leverages Massively Parallel Processing (MPP) to quickly run complex queries across petabytes of data. Import big data into SQL Data Warehouse with simple PolyBase T-SQL queries, and then use the power of MPP to run high-performance analytics.
+
+**SQL Server Reporting Services":
 
 **Jumpbox**: The jumpbox (bastion host) is the single point of entry that allows users to access the deployed resources in this environment. The jumpbox provides a secure connection to deployed resources by only allowing remote traffic from public IP addresses on a safe list. To permit remote desktop (RDP) traffic, the source of the traffic needs to be defined in the Network Security Group (NSG).
 
