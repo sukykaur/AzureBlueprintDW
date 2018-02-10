@@ -10,11 +10,11 @@ This architecture is intended to serve as a foundation for customers to adjust t
 
 ## Architecture Diagram and Components
 
-This solution deploys a data warehouse reference architecture enabling you to quickly implement a high-performance and secure cloud data warehouse. There are two separate data tiers in this deployment: one where data is imported, stored, and staged within a clustered SQL environment, and another for the Azure SQL Data Warehouse where the data is loaded using an ETL tool (e.g. [PolyBase](https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-guide) T-SQL queries) for processing. Once data is stored in Azure SQL Data Warehouse, you can run analytics at massive scale. Data is stored in relational tables with columnar storage, and this format significantly reduces the data storage costs, and improves query performance. Compared to traditional database systems, analysis queries finish in seconds instead of minutes, or hours instead of days. Depending on your usage requirements, Azure SQL Data Warehouse compute resources can be scaled up or down, or shut off completely if there are no active processes needing compute resources.
+This solution deploys a data warehouse reference architecture enabling you to quickly implement a high-performance and secure cloud data warehouse. There are two separate data tiers in this deployment: one where data is imported, stored, and staged within a clustered SQL environment, and another for the Azure SQL Data Warehouse where the data is loaded using an ETL tool (e.g. [PolyBase](https://docs.microsoft.com/en-us/azure/sql-data-warehouse/load-data-from-azure-blob-storage-using-polybase) T-SQL queries) for processing. Once data is stored in Azure SQL Data Warehouse, you can run analytics at massive scale. Data is stored in relational tables with columnar storage, and this format significantly reduces the data storage costs, and improves query performance. Compared to traditional database systems, analysis queries finish in seconds instead of minutes, or hours instead of days. Depending on your usage requirements, Azure SQL Data Warehouse compute resources can be scaled up or down, or shut off completely if there are no active processes needing compute resources.
 
 A SQL load balancer is deployed to load balance and manage SQL traffic, ensuring high performance. Furthermore, all virtual machines in this reference architecture are deployed in an availability set, and SQL Server instances are configured in an AlwaysOn availability group for high-availability and disaster-recovery capabilities.
 
-This data warehouse reference architecture also deploys Azure Active Directory (AAD). AAD is used to manage the deployment and provision access to personnel interacting with the environment. Azure Services such as Key Vault also interact with AAD. All virtual machines are domain-joined, and Active Directory group policies are used to enforce security and compliance configurations at the operating system level.
+This data warehouse reference architecture also deploys an Active Directory (AD) tier for identity management. The Active Directory subnet that is deployed in this reference architecture is put in place for easy adoption under a larger AD forest structure, which allows for the environment to continue to operate even when access to the larger forest is unavailable. Azure Active Directory (AAD) is required to deploy this solution because AAD is used to manage the deployment and provision access to personnel interacting with the environment. Azure Services such as Key Vault also interact with AAD. All virtual machines are domain-joined, and Active Directory group policies are used to enforce security and compliance configurations at the operating system level.
 
 A virtual machine is deployed as a management jumpbox (bastion host) to provide a secure connection for administrators to access deployed resources. The data is loaded into the staging area through this management jumpbox. It is recommended that you configure a VPN or Azure ExpressRoute connection for management and data import into the reference architecture subnet.
 
@@ -38,6 +38,8 @@ Virtual Network
 
 SQL Data Warehouse
 
+SQL Server Reporting Services
+
 Azure SQL Load Balancer
 
 Recovery Services Vault
@@ -52,7 +54,7 @@ The following section details the development and implementation elements.
 
 **SQL Data Warehouse**: [SQL Data Warehouse](https://docs.microsoft.com/en-us/azure/sql-data-warehouse/sql-data-warehouse-overview-what-is) is an Enterprise Data Warehouse (EDW) that leverages Massively Parallel Processing (MPP) to quickly run complex queries across petabytes of data. Import big data into SQL Data Warehouse with simple PolyBase T-SQL queries, and then use the power of MPP to run high-performance analytics.
 
-**SQL Server Reporting Services":
+**SQL Server Reporting Services**: [SQL Server Reporting Services](https://docs.microsoft.com/en-us/sql/reporting-services/report-data/sql-azure-connection-type-ssrs) enable you to quickly create reports with tables, charts, maps, gauges, matrixes, and more.
 
 **Jumpbox**: The jumpbox (bastion host) is the single point of entry that allows users to access the deployed resources in this environment. The jumpbox provides a secure connection to deployed resources by only allowing remote traffic from public IP addresses on a safe list. To permit remote desktop (RDP) traffic, the source of the traffic needs to be defined in the Network Security Group (NSG).
 
@@ -139,9 +141,19 @@ To learn more about using the security features of Azure SQL Database, see the [
 
 
 ## Guidance and Recommendations
+### ExpressRoute and VPN
 [ExpressRoute](https://docs.microsoft.com/en-us/azure/expressroute/expressroute-introduction) or a secure VPN tunnel will need to be configured to securely establish a connection to the resources deployed as a part of this data warehouse reference architecture. As ExpressRoute connections do not go over the Internet, these connections offer more reliability, faster speeds, lower latencies, and higher security than typical connections over the Internet. By appropriately setting up an ExpressRoute or a VPN, you can add a layer of protection for data in transit.
 
-The [Azure Commercial cloud](https://azure.microsoft.com/en-us/overview/what-is-azure/) maintains a FedRAMP JAB P-ATO at the Moderate Impact Level. This instance of Microsoft Azure offers a wide variety of services to assist with formatted and unformatted data storage and staging for use in data warehousing, including:
+### Extract-Transform-Load (ETL) Process
+By using [PolyBase](https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-guide) to load data into Azure SQL Data Warehouse, there is no need for a separate ETL or import tool. PolyBase allows you to access data by using T-SQL queries. Microsoft's business intelligence and analysis stack, as well as third-party tools that are compatible with SQL Server can be used with PolyBase.
+
+### Azure Active Directory Setup
+As mentioned in the sections above, [Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis) is required to deploy this solution. Your existing Windows Server Active Directory can be integrated with AAD in just [four clicks](https://docs.microsoft.com/en-us/azure/active-directory/connect/active-directory-aadconnect-get-started-express). You can also choose to tie in AAD as a subdomain of your existing forest.
+
+### Additional Services
+Although this data warehouse automation is not configured to deploy to the [Azure Commercial](https://azure.microsoft.com/en-us/overview/what-is-azure/) environment, similar objectives can be achieved by using the services described in this reference architecture, as well as additional services available only in the Azure Commercial environment. Please note that Azure Commercial maintains a FedRAMP JAB P-ATO at the Moderate Impact Level. As such, government agencies and partners can deploy moderately sensitive data to the cloud leveraging the Azure Commercial environment. 
+
+Azure Commercial offers a wide variety of services to assist with formatted and unformatted data storage and staging for use in data warehousing, including:
 -	[Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/introduction) is a managed cloud service that's built for complex hybrid extract-transform-load (ETL), extract-load-transform (ELT), and data integration projects. Using Azure Data Factory, you can create and schedule data-driven workflows (called pipelines) that can ingest data from disparate data stores. You can then process and transform the data for output into data stores such as Azure SQL Data Warehouse.
 -	[Azure Data Lake Store](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-overview) enables you to capture data of any size, type, and ingestion speed in one single place for operational and exploratory analytics. Azure Data Lake Store is compatible with most open source components in the Hadoop ecosystem. It also integrates nicely with other Azure services such as Azure SQL Data Warehouse.
 
