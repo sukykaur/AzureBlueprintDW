@@ -42,6 +42,8 @@ SQL Server Reporting Services
 
 Azure SQL Load Balancer
 
+Azure Active Directory
+
 Recovery Services Vault
 
 Azure Key Vault
@@ -151,7 +153,7 @@ By using [PolyBase](https://docs.microsoft.com/en-us/sql/relational-databases/po
 As mentioned in the sections above, [Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis) is required to deploy this solution. Your existing Windows Server Active Directory can be integrated with AAD in just [four clicks](https://docs.microsoft.com/en-us/azure/active-directory/connect/active-directory-aadconnect-get-started-express). You can also choose to tie in AAD as a subdomain of your existing forest.
 
 ### Additional Services
-Although this data warehouse automation is not configured to deploy to the [Azure Commercial](https://azure.microsoft.com/en-us/overview/what-is-azure/) environment, similar objectives can be achieved by using the services described in this reference architecture, as well as additional services available only in the Azure Commercial environment. Please note that Azure Commercial maintains a FedRAMP JAB P-ATO at the Moderate Impact Level. As such, government agencies and partners can deploy moderately sensitive data to the cloud leveraging the Azure Commercial environment. 
+Although this data warehouse automation is not configured to deploy to the [Azure Commercial](https://azure.microsoft.com/en-us/overview/what-is-azure/) environment, similar objectives can be achieved by using the services described in this reference architecture, as well as additional services available only in the Azure Commercial environment. Please note that Azure Commercial maintains a FedRAMP JAB P-ATO at the Moderate Impact Level. As such, government agencies and partners can deploy moderately sensitive data to the cloud leveraging the Azure Commercial environment.
 
 Azure Commercial offers a wide variety of services to assist with formatted and unformatted data storage and staging for use in data warehousing, including:
 -	[Azure Data Factory](https://docs.microsoft.com/en-us/azure/data-factory/introduction) is a managed cloud service that's built for complex hybrid extract-transform-load (ETL), extract-load-transform (ELT), and data integration projects. Using Azure Data Factory, you can create and schedule data-driven workflows (called pipelines) that can ingest data from disparate data stores. You can then process and transform the data for output into data stores such as Azure SQL Data Warehouse.
