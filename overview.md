@@ -18,7 +18,7 @@ This data warehouse reference architecture also deploys an Active Directory (AD)
 
 A virtual machine is deployed as a management jumpbox (bastion host) to provide a secure connection for administrators to access deployed resources. The data is loaded into the staging area through this management jumpbox. It is recommended that you configure a VPN or Azure ExpressRoute connection for management and data import into the reference architecture subnet.
 
-![alt text](FedRAMP-DW-Architecture-Diagram.png "Data Warehouse for FedRAMP Architecture Diagram")
+![alt text](https://github.com/sukykaur/AzureBlueprintDW/blob/master/FedRAMP-DW-Architecture-Diagram.PNG?raw=true)
 
 This solution uses the following Azure services. Details of the deployment architecture are in the [Deployment Architecture](#deployment-architecture) section.
 
