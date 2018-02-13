@@ -78,9 +78,9 @@ This deployment defines a private virtual network with an address space of 10.0.
   -	An NSG for Active Directory
   - An NSG for SQL Server Reporting Services
 
-Each of the NSGs have specific ports and protocols opened for the secure and correct working of the solution. In addition, the following configurations are enabled for each NSG:
-  -	Enabled [diagnostic logs and events](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-nsg-manage-log) are stored in a storage account
-  -	Connected OMS Log Analytics to the [NSG's diagnostics](https://github.com/krnese/AzureDeploy/blob/master/AzureMgmt/AzureMonitor/nsgWithDiagnostics.json)
+Each of the NSGs have specific ports and protocols open so that the solution can work securely and correctly. In addition, the following configurations are enabled for each NSG:
+  -	[Diagnostic logs and events](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-nsg-manage-log) are enabled and stored in a storage account
+  -	OMS Log Analytics is connected to the [NSG's diagnostics](https://github.com/krnese/AzureDeploy/blob/master/AzureMgmt/AzureMonitor/nsgWithDiagnostics.json)
 
 **Subnets**: Each subnet is associated with its corresponding NSG.
 
