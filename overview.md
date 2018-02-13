@@ -34,7 +34,7 @@ Availability Sets
 
 Virtual Network
 -	(4) Subnets
--	(4) Network Security Groups
+-	(5) Network Security Groups
 
 SQL Data Warehouse
 
@@ -76,6 +76,7 @@ This deployment defines a private virtual network with an address space of 10.0.
   -	An NSG for the SQL Data Warehouse
   -	An NSG for the management jumpbox (bastion host)
   -	An NSG for Active Directory
+  - An NSG for SQL Server Reporting Services
 
 Each of the NSGs have specific ports and protocols opened for the secure and correct working of the solution. In addition, the following configurations are enabled for each NSG:
   -	Enabled [diagnostic logs and events](https://docs.microsoft.com/en-us/azure/virtual-network/virtual-network-nsg-manage-log) are stored in a storage account
