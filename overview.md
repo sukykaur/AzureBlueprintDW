@@ -162,9 +162,9 @@ Azure Commercial offers a wide variety of services to assist with formatted and 
 ## Threat Model
 
 ## Compliance Documentation
-The Customer Responsibility Matrix (Excel Workbook) lists all security controls required by the FedRAMP High baseline. The matrix denotes, for each control (or control subpart), whether implementation of the control is the responsibility of Microsoft, the customer, or shared between the two.
+The [Customer Responsibility Matrix](https://aka.ms/blueprinthighcrm) (Excel Workbook) lists all security controls required by the FedRAMP High baseline. The matrix denotes, for each control (or control subpart), whether implementation of the control is the responsibility of Microsoft, the customer, or shared between the two.
 
-The Control Implementation Matrix (Excel Workbook) lists all security controls required by the FedRAMP High baseline. The matrix denotes, for each control (or control subpart) that is designated a customer-responsibility in the customer responsibilities matrix, 1) if the Blueprint Automation implements the control, and 2) a description of how the implementation aligns with the control requirement(s). This content is also available here.
+The [Control Implementation Matrix](https://aka.ms/blueprintdwcim) (Excel Workbook) lists all security controls required by the FedRAMP High baseline. The matrix denotes, for each control (or control subpart) that is designated a customer-responsibility in the customer responsibilities matrix, 1) if the Blueprint Automation implements the control, and 2) a description of how the implementation aligns with the control requirement(s). This content is also available here.
 
 ## Deploy the Solution
 Coming soon.
