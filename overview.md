@@ -1,4 +1,4 @@
-# Azure Blueprint Automation: Data Warehouse for FedRAMP
+# Azure Security and Compliance Blueprint: Data Warehouse for FedRAMP Automation
 
 ## Overview
 
