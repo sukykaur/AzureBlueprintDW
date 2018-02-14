@@ -34,7 +34,7 @@ Availability Sets
 
 Virtual Network
 -	(4) Subnets
--	(5) Network Security Groups
+-	(4) Network Security Groups
 
 SQL Data Warehouse
 
@@ -73,7 +73,6 @@ This deployment defines a private virtual network with an address space of 10.0.
 
 **Network Security Groups**: [NSGs](https://docs.microsoft.com/azure/virtual-network/virtual-networks-nsg) contain Access Control Lists (ACLs) that allow or deny traffic within a VNet. NSGs can be used to secure traffic at a subnet or individual VM level. The following NSGs exist:
   -	An NSG for the Data Tier (SQL Server Clusters, SQL Server Witness, and SQL Load Balancer)
-  -	An NSG for the SQL Data Warehouse
   -	An NSG for the management jumpbox (bastion host)
   -	An NSG for Active Directory
   - An NSG for SQL Server Reporting Services
@@ -151,7 +150,7 @@ To learn more about using the security features of Azure SQL Database, see the [
 By using [PolyBase](https://docs.microsoft.com/en-us/sql/relational-databases/polybase/polybase-guide) to load data into Azure SQL Data Warehouse, there is no need for a separate ETL or import tool. PolyBase allows you to access data by using T-SQL queries. Microsoft's business intelligence and analysis stack, as well as third-party tools that are compatible with SQL Server can be used with PolyBase.
 
 ### Azure Active Directory Setup
-As mentioned in the sections above, [Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis) is required to deploy this solution. Your existing Windows Server Active Directory can be integrated with AAD in just [four clicks](https://docs.microsoft.com/en-us/azure/active-directory/connect/active-directory-aadconnect-get-started-express). You can also choose to tie in AAD as a subdomain of your existing forest.
+As mentioned in the sections above, [Azure Active Directory](https://docs.microsoft.com/en-us/azure/active-directory/active-directory-whatis) is required to deploy this solution. Your existing Windows Server Active Directory can be integrated with AAD in just [four clicks](https://docs.microsoft.com/en-us/azure/active-directory/connect/active-directory-aadconnect-get-started-express). You can also tie in the deployed Active Directory infrastructure (domain controllers) into your existing AAD by making the deployed Active Directory infrastructure a subdomain of your AAD forest.
 
 ### Additional Services
 Although this data warehouse automation is not configured to deploy to the [Azure Commercial](https://azure.microsoft.com/en-us/overview/what-is-azure/) environment, similar objectives can be achieved by using the services described in this reference architecture, as well as additional services available only in the Azure Commercial environment. Please note that Azure Commercial maintains a FedRAMP JAB P-ATO at the Moderate Impact Level. As such, government agencies and partners can deploy moderately sensitive data to the cloud leveraging the Azure Commercial environment.
