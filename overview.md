@@ -165,7 +165,11 @@ Azure Commercial offers a wide variety of services to assist with formatted and 
 -	[Azure Data Lake Store](https://docs.microsoft.com/en-us/azure/data-lake-store/data-lake-store-overview) enables you to capture data of any size, type, and ingestion speed in a single place for operational and exploratory analytics. Azure Data Lake Store is compatible with most open source components in the Hadoop ecosystem. It also integrates nicely with other Azure services such as Azure SQL Data Warehouse.
 
 ## Threat Model
+
+The data flow diagram (DFD) for this reference architecture is available on the [Service Trust Portal](https://aka.ms/blueprintdwthreatmodel). For reference, the DFD is also shown below:
+
 ![alt text](https://github.com/sukykaur/AzureBlueprintDW/blob/master/Azure%20Security%20and%20Compliance%20Blueprint%20-%20FedRAMP%20Hybrid%20Paas%20IaaS%20Data%20Warehouse%20Threat%20Model.PNG?raw=true)
+
 ## Compliance Documentation
 The [Azure Security and Compliance Blueprint – FedRAMP High Customer Responsibility Matrix](https://aka.ms/blueprinthighcrm) lists all security controls required by the FedRAMP High baseline. Similarly, the [Azure Security and Compliance Blueprint – FedRAMP Moderate Customer Responsibility Matrix](https://aka.ms/blueprintcrmmod) lists all security controls required by the FedRAMP Moderate baseline. Both documents detail whether the implementation of each control is the responsibility of Microsoft, the customer, or shared between the two.
 
